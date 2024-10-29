@@ -2,7 +2,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './Home.css'; 
+import './Home.css';
+import gitHubLogo from '../gitHubLogo.svg';
+import NavBar from '../NavBar/NavBar';
 
 const Home = () => {
     const [user, setUser] = useState(null);
@@ -35,7 +37,7 @@ const Home = () => {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
             });
-            fetchUser(); 
+            fetchUser();
         } catch (error) {
             console.error('Error updating user:', error);
         }
@@ -71,6 +73,8 @@ const Home = () => {
     }, []);
 
     return (
+        <>
+        <NavBar/>
         <div className="container">
             <h2>User Management</h2>
             {user ? (
@@ -105,7 +109,16 @@ const Home = () => {
             ) : (
                 <p>No user found.</p>
             )}
+            <a
+                href="https://github.com/AbhinayAmbati/SAMPLE-JWT-CRUD-OPERATIONS.git"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="github-link"
+            >
+                <img src={gitHubLogo} alt="GitHub Logo" className="github-logo" />
+            </a>
         </div>
+        </>
     );
 };
 

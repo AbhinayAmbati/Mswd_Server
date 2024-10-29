@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useAppContext } from '../../contexts/AppContext';
 import { Link, useNavigate } from 'react-router-dom';
 import './Login.css'; 
+import gitHubLogo from '../gitHubLogo.svg';
+import Navbar from '../NavBar/NavBar';
 
 const Login = () => {
   const { setUser, setUsername } = useAppContext(); 
@@ -34,10 +36,12 @@ const Login = () => {
   };
 
   return (
+    <>
+    <Navbar />
     <div className="container">
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className='login'>
           <label>Email:</label>
           <input
             type="email"
@@ -45,8 +49,6 @@ const Login = () => {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-        </div>
-        <div>
           <label>Password:</label>
           <input
             type="password"
@@ -61,7 +63,16 @@ const Login = () => {
           </Link>
       </form>
       {message && <p>{message}</p>} 
+      <a
+        href="https://github.com/AbhinayAmbati/SAMPLE-JWT-CRUD-OPERATIONS.git"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="github-link"
+      >
+        <img src={gitHubLogo} alt="GitHub Repository" className="github-logo" />
+      </a>
     </div>
+    </>
   );
 };
 

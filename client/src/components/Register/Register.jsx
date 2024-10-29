@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useAppContext } from '../../contexts/AppContext'; 
 import { Link, useNavigate } from 'react-router-dom';
 import './Register.css';
+import gitHubLogo from '../gitHubLogo.svg';
+import NavBar from '../NavBar/NavBar';
 
 const Register = () => {
   const { setUser } = useAppContext(); 
@@ -29,10 +31,12 @@ const Register = () => {
   };
 
   return (
+    <>
+    <NavBar/>
     <div className="container"> 
       <h2>Register</h2>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className='register'>
           <label>Name:</label>
           <input
             type="text"
@@ -40,8 +44,6 @@ const Register = () => {
             onChange={(e) => setName(e.target.value)}
             required
           />
-        </div>
-        <div>
           <label>Email:</label>
           <input
             type="email"
@@ -49,8 +51,6 @@ const Register = () => {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-        </div>
-        <div>
           <label>Password:</label>
           <input
             type="password"
@@ -60,12 +60,22 @@ const Register = () => {
           />
         </div>
         <button type="submit">Register</button>
-          <Link to='/login'>
-            <button type="button">Login</button>
-          </Link>
+        <Link to='/login'>
+          <button type="button">Login</button>
+        </Link>
       </form>
       {message && <p>{message}</p>}
+
+      <a
+        href="https://github.com/AbhinayAmbati/SAMPLE-JWT-CRUD-OPERATIONS.git"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="github-link"
+      >
+        <img src={gitHubLogo} alt="GitHub Repository" className="github-logo" />
+      </a>
     </div>
+    </>
   );
 };
 
